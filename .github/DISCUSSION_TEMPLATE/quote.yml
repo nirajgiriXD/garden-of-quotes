@@ -1,0 +1,30 @@
+title: "Add new quote"
+labels: ["add new quote"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please fill the data below. If the input field is not applicable, use "NA".
+  - type: textarea
+    attributes:
+      label: Quote
+      description: Write the quote
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Author
+      description: Write the name of the person who quoted the quote
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Tags
+      description: Write appropriate tags for the quote
+      value: |
+        1. 
+        2. 
+        3. 
+        ...
+    validations:
+      required: true
