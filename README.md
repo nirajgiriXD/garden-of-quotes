@@ -1,5 +1,7 @@
 # Garden of Quotes
 
+Welcome to the `Garden of Quotes`.
+
 ## Details
 
 - The data is in `public/quotes.json`.
