@@ -1,6 +1,6 @@
 # Garden of Quotes
 
-Welcome to the `Garden of Quotes`. Share your quotes or get to know the quotes from around the world.
+Welcome to the `Garden of Quotes`. Explore and share quotes from diverse perspectives around the globe.
 
 ## Details
 
