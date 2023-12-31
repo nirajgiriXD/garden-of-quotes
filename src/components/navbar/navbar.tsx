@@ -1,9 +1,12 @@
 /**
  * Internal dependencies.
  */
+import React from 'react';
 import NavItem from "./navitem";
 import { navItemsList } from "./constant";
 import { type NavbarProp } from "./types/navbarProp";
+
+import SearchPage from "../Search/SearchBox";
 
 const Navbar = ({ logo }: NavbarProp) => {
   return (
@@ -28,14 +31,19 @@ const Navbar = ({ logo }: NavbarProp) => {
             <ul className="navbar-nav my-2 my-lg-0">
               {navItemsList.map((navItem, key) => {
                 return (
-                  <NavItem
-                    key={key}
-                    name={navItem.name}
-                    link={navItem.link}
-                    id={navItem.id}
-                    isButton={navItem.isButton}
-                    openInNewTab={navItem.openInNewTab}
-                  />
+                  <React.Fragment key={key}>{
+                    navItem.id === 'search-quote-btn' ? (
+                      <SearchPage />
+                    ) : (
+                      <NavItem
+                        name={navItem.name}
+                        link={navItem.link}
+                        id={navItem.id}
+                        isButton={navItem.isButton}
+                        openInNewTab={navItem.openInNewTab}
+                      />
+                    )}
+                   </React.Fragment>
                 );
               })}
             </ul>
