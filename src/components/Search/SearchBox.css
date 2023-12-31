@@ -33,18 +33,6 @@
     outline: none;
   }
 /*   
-  .suggestions-list {
-    list-style-type: none;
-    padding: 8px; 
-    margin: 0;
-    width: 40%;
-    border: 1px solid #ccc;
-    border-top: none;
-    border-radius: 0 0 8px 8px;
-   
-    max-height: 200px;
-    overflow-y: auto;
-  } */
   
   .suggestions-list-item {
     padding: 8px;
