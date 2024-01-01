@@ -163,3 +163,8 @@ nav {
     padding: 8px;
   }
 }
+
+/* Search Box */
+.form-control:focus {
+  box-shadow: none;
+}
