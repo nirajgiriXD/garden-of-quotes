@@ -1,39 +1,40 @@
-import React, { useState, ChangeEvent, FormEvent, useRef, useEffect } from 'react';
-import './SearchBox.css';
+/**
+ * External dependencies.
+ */
+import React, {
+  useState,
+  ChangeEvent,
+  FormEvent,
+  useRef,
+  useEffect,
+} from "react";
 
-interface Saying {
-  quote: string;
-  author?: string;
-}
+/**
+ * Internal dependencies.
+ */
+import { QuoteItemProp } from "../types/quoteProp";
+import { SeachBoxProp } from "./types/searchBoxProp";
+import "../../assets/css/search-box.css";
 
-interface HighlightedSuggestion extends Saying {
+interface HighlightedSuggestion extends QuoteItemProp {
   highlighted: React.ReactNode;
 }
 
-import sayingData from '../../../public/quotes.json';
-
-const SearchPage: React.FC = () => {
-  const [searchQuery, setSearchQuery] = useState<string>('');
-  const [searchResults, setSearchResults] = useState<Saying[]>([]);
-  const [suggestedQueries, setSuggestedQueries] = useState<HighlightedSuggestion[]>([]);
+const SearchPage: React.FC<SeachBoxProp> = ({ quotes }) => {
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [searchResults, setSearchResults] = useState<QuoteItemProp[]>([]);
+  const [suggestedQueries, setSuggestedQueries] = useState<
+    HighlightedSuggestion[]
+  >([]);
   const searchInputRef = useRef<HTMLInputElement | null>(null);
 
-  useEffect(() => {
+  const calculateMaxSuggestions = () => {
     if (searchInputRef.current) {
-      handleInputChange(searchInputRef.current.value);
+      const searchInputWidth = searchInputRef.current.clientWidth;
+      const averageSuggestionWidth = 1; // Adjust as needed based on your styling
+      return Math.floor(searchInputWidth / averageSuggestionWidth);
     }
-  }, []);
-
-  const handleSearch = () => {
-    if (searchQuery.trim() !== '') {
-      const filteredResults = sayingData.data.filter(item => {
-        const queryWords = searchQuery.toLowerCase().split(/\s+/);
-        return queryWords.every(word => item.quote.toLowerCase().includes(word));
-      });
-      setSearchResults(filteredResults);
-    } else {
-      setSearchResults([]);
-    }
+    return 0;
   };
 
   const highlightSearchTerms = (text: string, terms: string) => {
@@ -44,7 +45,7 @@ const SearchPage: React.FC = () => {
 
     return (
       <span>
-        {text.split('').map((char, index) => {
+        {text.split("").map((char, index) => {
           const isMatch = char.toLowerCase() === lowerTerms[currentTermIndex];
 
           if (isMatch) {
@@ -58,7 +59,7 @@ const SearchPage: React.FC = () => {
           }
 
           return (
-            <span key={index} className={startHighlight ? 'highlight' : ''}>
+            <span key={index} className={startHighlight ? "highlight" : ""}>
               {char}
             </span>
           );
@@ -70,30 +71,38 @@ const SearchPage: React.FC = () => {
   const handleInputChange = (value: string) => {
     setSearchQuery(value);
 
-    if (value.trim() === '') {
+    if (value.trim() === "") {
       setSuggestedQueries([]);
       return;
     }
 
-    const suggestions = sayingData.data
-      .filter(item => item.quote.toLowerCase().startsWith(value.toLowerCase()))
+    const suggestions = quotes
+      .filter((item: QuoteItemProp) =>
+        item.quote.toLowerCase().startsWith(value.toLowerCase())
+      )
       .slice(0, calculateMaxSuggestions())
-      .map(item => ({
+      .map((item: QuoteItemProp) => ({
         quote: item.quote,
         author: item.author,
+        tags: item.tags,
         highlighted: highlightSearchTerms(item.quote, value),
       }));
 
     setSuggestedQueries(suggestions);
   };
 
-  const calculateMaxSuggestions = () => {
-    if (searchInputRef.current) {
-      const searchInputWidth = searchInputRef.current.clientWidth;
-      const averageSuggestionWidth = 1; // Adjust as needed based on your styling
-      return Math.floor(searchInputWidth / averageSuggestionWidth);
+  const handleSearch = () => {
+    if (searchQuery.trim() !== "") {
+      const filteredResults = quotes.filter((item: QuoteItemProp) => {
+        const queryWords = searchQuery.toLowerCase().split(/\s+/);
+        return queryWords.every((word) =>
+          item.quote.toLowerCase().includes(word)
+        );
+      });
+      setSearchResults(filteredResults);
+    } else {
+      setSearchResults([]);
     }
-    return 0;
   };
 
   const handleSuggestionClick = (suggestion: HighlightedSuggestion) => {
@@ -108,21 +117,28 @@ const SearchPage: React.FC = () => {
     setSuggestedQueries([]);
   };
 
+  useEffect(() => {
+    if (searchInputRef.current) {
+      handleInputChange(searchInputRef.current.value);
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div className="search-container">
       <div className="search-box">
-        <form onSubmit={handleSubmit} style={{ width: '100%' }}>
+        <form onSubmit={handleSubmit} style={{ width: "100%" }}>
           <input
             type="text"
             className="search-input"
-            placeholder="Search sayings..."
+            placeholder="Search quotes..."
             value={searchQuery}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => handleInputChange(e.target.value)}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              handleInputChange(e.target.value)
+            }
             ref={searchInputRef}
           />
-          <button type="submit" className="search-button">
-            Search
-          </button>
         </form>
       </div>
 
@@ -149,9 +165,8 @@ const SearchPage: React.FC = () => {
             </div>
           ))}
         </ul>
-
       ) : (
-        searchQuery.trim() !== '' && <p>No results found.</p>
+        searchQuery.trim() !== "" && <p>No results found.</p>
       )}
     </div>
   );

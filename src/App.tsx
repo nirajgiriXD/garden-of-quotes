@@ -26,7 +26,7 @@ const App = () => {
 
   return (
     <>
-      <Navbar logo={logo} />
+      <Navbar logo={logo} quotes={quotes} />
       <main className="d-flex align-items-center justify-content-center">
         <QuoteBox quotes={quotes} />
       </main>

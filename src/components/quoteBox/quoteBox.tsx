@@ -1,33 +1,38 @@
-import React, { useEffect, useState } from 'react';
-import { QuoteItemProp } from '../types/quoteProp';
-import { QuoteBoxProp } from './types/quoteBoxProp';
+/**
+ * External dependencies.
+ */
+import React, { useCallback, useEffect, useState } from "react";
+
+/**
+ * Internal dependencies.
+ */
+import { QuoteItemProp } from "../types/quoteProp";
+import { QuoteBoxProp } from "./types/quoteBoxProp";
 
 const QuoteBox: React.FC<QuoteBoxProp> = ({ quotes }) => {
   const [numOfQuotes, setNumOfQuotes] = useState(0);
   const [quoteItem, setQuoteItem] = useState({
-    quote: '',
-    author: '',
+    quote: "",
+    author: "",
     tags: [],
   } as QuoteItemProp);
 
-  useEffect(() => {
-    setNumOfQuotes(quotes.length);
-  }, [quotes]);
+  const generateRandomQuote = useCallback(() => {
+    let randomIndex = Math.floor(Math.random() * numOfQuotes);
+    while (quotes[randomIndex]?.quote === "") {
+      randomIndex = Math.floor(Math.random() * numOfQuotes);
+    }
+    setQuoteItem(quotes[randomIndex]);
+  }, [numOfQuotes, quotes]);
 
   useEffect(() => {
+    setNumOfQuotes(quotes.length);
+
     // Generate a random quote when the component mounts or when new quotes are received
     if (quotes.length > 0) {
       generateRandomQuote();
     }
-  }, [numOfQuotes, quotes]);
-
-  const generateRandomQuote = () => {
-    let randomIndex = Math.floor(Math.random() * numOfQuotes);
-    while (quotes[randomIndex]?.quote === '') {
-      randomIndex = Math.floor(Math.random() * numOfQuotes);
-    }
-    setQuoteItem(quotes[randomIndex]);
-  };
+  }, [generateRandomQuote, numOfQuotes, quotes]);
 
   return (
     <div id="quote-box">
@@ -39,7 +44,7 @@ const QuoteBox: React.FC<QuoteBoxProp> = ({ quotes }) => {
         </div>
         <div className="quote-author pt-3">
           <span>
-            - {quoteItem.author === '' ? 'Someone' : quoteItem.author}
+            - {quoteItem.author === "" ? "Someone" : quoteItem.author}
           </span>
         </div>
       </div>
@@ -47,7 +52,10 @@ const QuoteBox: React.FC<QuoteBoxProp> = ({ quotes }) => {
         <hr />
         <div className="buttons">
           <span className="quote-tags">
-            Tags: {quoteItem.tags.length === 0 ? 'general' : quoteItem.tags.join(', ')}
+            Tags:{" "}
+            {quoteItem.tags.length === 0
+              ? "general"
+              : quoteItem.tags.join(", ")}
           </span>
           <button className="button" onClick={generateRandomQuote}>
             New quote

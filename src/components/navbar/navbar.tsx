@@ -1,14 +1,12 @@
 /**
  * Internal dependencies.
  */
-import React from 'react';
 import NavItem from "./navitem";
 import { navItemsList } from "./constant";
 import { type NavbarProp } from "./types/navbarProp";
+import SearchPage from "../searchBox/searchBox";
 
-import SearchPage from "../Search/SearchBox";
-
-const Navbar = ({ logo }: NavbarProp) => {
+const Navbar = ({ logo, quotes }: NavbarProp) => {
   return (
     <nav className="navbar navbar-expand-lg shadow">
       <div className="container">
@@ -29,20 +27,18 @@ const Navbar = ({ logo }: NavbarProp) => {
         <div className="collapse navbar-collapse" id="navbar">
           <div className="w-100">
             <ul className="navbar-nav my-2 my-lg-0">
-              {navItemsList.map((navItem, key) => {
-                return (
-                  return 
-                    navItem.id === 'search-quote-btn' ? (
-                      <SearchPage />
-                    ) : (
-                      <NavItem
-                        name={navItem.name}
-                        link={navItem.link}
-                        id={navItem.id}
-                        isButton={navItem.isButton}
-                        openInNewTab={navItem.openInNewTab}
-                      />
-                    );
+              {navItemsList.map((navItem) => {
+                return navItem.id === "search-quote-btn" ? (
+                  <SearchPage key={navItem.id} quotes={quotes} />
+                ) : (
+                  <NavItem
+                    key={navItem.id}
+                    name={navItem.name}
+                    link={navItem.link}
+                    id={navItem.id}
+                    isButton={navItem.isButton}
+                    openInNewTab={navItem.openInNewTab}
+                  />
                 );
               })}
             </ul>
