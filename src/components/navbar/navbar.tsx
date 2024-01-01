@@ -31,7 +31,7 @@ const Navbar = ({ logo }: NavbarProp) => {
             <ul className="navbar-nav my-2 my-lg-0">
               {navItemsList.map((navItem, key) => {
                 return (
-                  <React.Fragment key={key}>{
+                  return 
                     navItem.id === 'search-quote-btn' ? (
                       <SearchPage />
                     ) : (
@@ -42,8 +42,7 @@ const Navbar = ({ logo }: NavbarProp) => {
                         isButton={navItem.isButton}
                         openInNewTab={navItem.openInNewTab}
                       />
-                    )}
-                   </React.Fragment>
+                    );
                 );
               })}
             </ul>
