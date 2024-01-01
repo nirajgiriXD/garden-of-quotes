@@ -47,7 +47,7 @@ const SearchPage: React.FC<SeachBoxProp> = ({ quotes }) => {
 
   return (
     <div className="search-container">
-      <div className="form-group">
+      <div className="">
         <input
           list="quote-list-suggestions"
           type="text"
@@ -60,19 +60,17 @@ const SearchPage: React.FC<SeachBoxProp> = ({ quotes }) => {
         {searchQuery !== "" && (
           <datalist id="quote-list-suggestions">
             {searchResult.length > 0 ? (
-              searchResult
-                .slice(0, maxNumberOfSuggestions)
-                .map((quote: string, index: number) => {
-                  return (
-                    <option
-                      key={index}
-                      value={quote}
-                      onClick={() => handleSuggestionClick(quote)}
-                    >
-                      {quote}
-                    </option>
-                  );
-                })
+              searchResult.map((quote: string, index: number) => {
+                return (
+                  <option
+                    key={index}
+                    value={quote}
+                    onClick={() => handleSuggestionClick(quote)}
+                  >
+                    {quote}
+                  </option>
+                );
+              })
             ) : (
               <option>Quote not found</option>
             )}
