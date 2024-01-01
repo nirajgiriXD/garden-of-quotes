@@ -47,7 +47,7 @@ const SearchPage: React.FC<SeachBoxProp> = ({ quotes }) => {
 
   return (
     <div className="search-container">
-      <div className="">
+      <div className="form-group">
         <input
           list="quote-list-suggestions"
           type="text"
