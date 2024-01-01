@@ -2,11 +2,11 @@
  * External dependencies.
  */
 import React, {
-  useState,
-  ChangeEvent,
-  FormEvent,
   useRef,
+  useState,
   useEffect,
+  useCallback,
+  ChangeEvent,
 } from "react";
 
 /**
@@ -14,160 +14,71 @@ import React, {
  */
 import { QuoteItemProp } from "../types/quoteProp";
 import { SeachBoxProp } from "./types/searchBoxProp";
-import "../../assets/css/search-box.css";
-
-interface HighlightedSuggestion extends QuoteItemProp {
-  highlighted: React.ReactNode;
-}
 
 const SearchPage: React.FC<SeachBoxProp> = ({ quotes }) => {
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [searchResults, setSearchResults] = useState<QuoteItemProp[]>([]);
-  const [suggestedQueries, setSuggestedQueries] = useState<
-    HighlightedSuggestion[]
-  >([]);
-  const searchInputRef = useRef<HTMLInputElement | null>(null);
+  const [searchResult, setSearchResult] = useState<string[]>([]);
 
-  const calculateMaxSuggestions = () => {
-    if (searchInputRef.current) {
-      const searchInputWidth = searchInputRef.current.clientWidth;
-      const averageSuggestionWidth = 1; // Adjust as needed based on your styling
-      return Math.floor(searchInputWidth / averageSuggestionWidth);
-    }
-    return 0;
-  };
+  const maxNumberOfSuggestions = 10;
+  const quotesArray = useRef<string[]>([]);
 
-  const highlightSearchTerms = (text: string, terms: string) => {
-    const lowerTerms = terms.toLowerCase();
+  const handleSuggestionClick = useCallback((quote: string) => {
+    setSearchQuery(quote);
+  }, []);
 
-    let currentTermIndex = 0;
-    let startHighlight = false;
+  const handleSearchInputChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      const inputQuery = e.target.value ?? "";
+      setSearchQuery(inputQuery);
 
-    return (
-      <span>
-        {text.split("").map((char, index) => {
-          const isMatch = char.toLowerCase() === lowerTerms[currentTermIndex];
+      const filteredQuotes = quotesArray.current.filter((quote) =>
+        quote.includes(inputQuery)
+      );
 
-          if (isMatch) {
-            if (!startHighlight) {
-              startHighlight = true;
-            }
-            currentTermIndex += 1;
-          } else if (startHighlight) {
-            startHighlight = false;
-            currentTermIndex = 0;
-          }
-
-          return (
-            <span key={index} className={startHighlight ? "highlight" : ""}>
-              {char}
-            </span>
-          );
-        })}
-      </span>
-    );
-  };
-
-  const handleInputChange = (value: string) => {
-    setSearchQuery(value);
-
-    if (value.trim() === "") {
-      setSuggestedQueries([]);
-      return;
-    }
-
-    const suggestions = quotes
-      .filter((item: QuoteItemProp) =>
-        item.quote.toLowerCase().startsWith(value.toLowerCase())
-      )
-      .slice(0, calculateMaxSuggestions())
-      .map((item: QuoteItemProp) => ({
-        quote: item.quote,
-        author: item.author,
-        tags: item.tags,
-        highlighted: highlightSearchTerms(item.quote, value),
-      }));
-
-    setSuggestedQueries(suggestions);
-  };
-
-  const handleSearch = () => {
-    if (searchQuery.trim() !== "") {
-      const filteredResults = quotes.filter((item: QuoteItemProp) => {
-        const queryWords = searchQuery.toLowerCase().split(/\s+/);
-        return queryWords.every((word) =>
-          item.quote.toLowerCase().includes(word)
-        );
-      });
-      setSearchResults(filteredResults);
-    } else {
-      setSearchResults([]);
-    }
-  };
-
-  const handleSuggestionClick = (suggestion: HighlightedSuggestion) => {
-    setSearchQuery(suggestion.quote);
-    setSearchResults([suggestion]);
-    setSuggestedQueries([]);
-  };
-
-  const handleSubmit = (event: FormEvent) => {
-    event.preventDefault();
-    handleSearch();
-    setSuggestedQueries([]);
-  };
+      setSearchResult(filteredQuotes.slice(0, maxNumberOfSuggestions));
+    },
+    []
+  );
 
   useEffect(() => {
-    if (searchInputRef.current) {
-      handleInputChange(searchInputRef.current.value);
-    }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    const allQuotes = quotes.map((quote: QuoteItemProp) => quote.quote);
+    quotesArray.current = allQuotes;
+  }, [quotes]);
 
   return (
     <div className="search-container">
-      <div className="search-box">
-        <form onSubmit={handleSubmit} style={{ width: "100%" }}>
-          <input
-            type="text"
-            className="search-input"
-            placeholder="Search quotes..."
-            value={searchQuery}
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              handleInputChange(e.target.value)
-            }
-            ref={searchInputRef}
-          />
-        </form>
+      <div className="form-group">
+        <input
+          list="quote-list-suggestions"
+          type="text"
+          className="form-control"
+          placeholder="Search quote..."
+          value={searchQuery}
+          onChange={handleSearchInputChange}
+        />
+
+        {searchQuery !== "" && (
+          <datalist id="quote-list-suggestions">
+            {searchResult.length > 0 ? (
+              searchResult
+                .slice(0, maxNumberOfSuggestions)
+                .map((quote: string, index: number) => {
+                  return (
+                    <option
+                      key={index}
+                      value={quote}
+                      onClick={() => handleSuggestionClick(quote)}
+                    >
+                      {quote}
+                    </option>
+                  );
+                })
+            ) : (
+              <option>Quote not found</option>
+            )}
+          </datalist>
+        )}
       </div>
-
-      {suggestedQueries.length > 0 && (
-        <div className="suggestions-list">
-          {suggestedQueries.map((suggestion, index) => (
-            <div
-              key={index}
-              className="suggestions-list-item"
-              onClick={() => handleSuggestionClick(suggestion)}
-            >
-              {suggestion.highlighted}
-            </div>
-          ))}
-        </div>
-      )}
-
-      {searchResults.length > 0 ? (
-        <ul>
-          {searchResults.map((result, index) => (
-            <div key={index}>
-              <p>{result.quote}</p>
-              {result.author && <p>Author: {result.author}</p>}
-            </div>
-          ))}
-        </ul>
-      ) : (
-        searchQuery.trim() !== "" && <p>No results found.</p>
-      )}
     </div>
   );
 };
