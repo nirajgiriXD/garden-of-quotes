@@ -60,19 +60,17 @@ const SearchPage: React.FC<SeachBoxProp> = ({ quotes }) => {
         {searchQuery !== "" && (
           <datalist id="quote-list-suggestions">
             {searchResult.length > 0 ? (
-              searchResult
-                .slice(0, maxNumberOfSuggestions)
-                .map((quote: string, index: number) => {
-                  return (
-                    <option
-                      key={index}
-                      value={quote}
-                      onClick={() => handleSuggestionClick(quote)}
-                    >
-                      {quote}
-                    </option>
-                  );
-                })
+              searchResult.map((quote: string, index: number) => {
+                return (
+                  <option
+                    key={index}
+                    value={quote}
+                    onClick={() => handleSuggestionClick(quote)}
+                  >
+                    {quote}
+                  </option>
+                );
+              })
             ) : (
               <option>Quote not found</option>
             )}
