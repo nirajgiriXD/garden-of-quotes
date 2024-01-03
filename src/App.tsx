@@ -1,8 +1,14 @@
+/**
+ * External dependencies.
+ */
+import { useEffect, useState } from "react";
+
+/**
+ * Internal dependencies.
+ */
 import logo from "./assets/img/logo.png";
 import Navbar from "./components/navbar/navbar";
 import QuoteBox from "./components/quoteBox/quoteBox";
-import { useEffect, useState } from "react";
-
 import { QuoteItemProp } from "./components/types/quoteProp";
 
 const App = () => {
