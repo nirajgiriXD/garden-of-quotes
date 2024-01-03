@@ -3,8 +3,11 @@ import Navbar from "./components/navbar/navbar";
 import QuoteBox from "./components/quoteBox/quoteBox";
 import { useEffect, useState } from "react";
 
+import { QuoteItemProp } from "./components/types/quoteProp";
+
 const App = () => {
   const [quotes, setQuotes] = useState([]);
+  const [tags, setTags] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     const fetchData = async () => {
@@ -13,8 +16,12 @@ const App = () => {
           "https://raw.githubusercontent.com/nirajgiriXD/garden-of-quotes/main/public/quotes.json"
         );
         const data = await response.json();
+        const setOfTags = new Set<string>(
+          data.data.flatMap((quote: QuoteItemProp) => quote.tags)
+        );
 
         setQuotes(data.data);
+        setTags(setOfTags);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -28,7 +35,7 @@ const App = () => {
     <>
       <Navbar logo={logo} quotes={quotes} />
       <main className="d-flex align-items-center justify-content-center">
-        <QuoteBox quotes={quotes} />
+        <QuoteBox quotes={quotes} tags={tags} />
       </main>
     </>
   );
