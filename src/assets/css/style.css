@@ -40,131 +40,98 @@ nav {
   .navbar-brand {
     margin-right: 21px;
   }
+
   .navbar-nav {
     float: inline-end;
   }
 }
 
-/* Quote Box */
-#quote-box {
-  border-radius: 2%;
-  position: relative;
-  height: 500px;
-  width: var(--quote-box-width);
-  padding: 34px;
-  display: block;
-  background-color: #fff;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#quote-box .scrollable-quote-box-container {
-  height: 320px;
-  padding: 0 8px;
-  overflow-y: auto;
-}
-
-/* Sidebar Scrollbar */
-#quote-box .scrollable-quote-box-container::-webkit-scrollbar {
-  height: 100%;
-  width: 5px;
-}
-
-#quote-box .scrollable-quote-box-container::-webkit-scrollbar-track,
-#quote-box .scrollable-quote-box-container::-webkit-scrollbar-thumb {
-  border-radius: 21px;
-}
-
-#quote-box .scrollable-quote-box-container::-webkit-scrollbar-thumb {
-  color: var(--nav-color);
-  background-color: var(--nav-color);
-}
-
-#quote-box .quote-text {
-  height: auto;
+.quote-text {
   clear: both;
   justify-content: center;
   line-height: 1.2;
   font-weight: 500;
   font-size: 1.5em;
-}
-
-#quote-box .quote-text i {
-  font-size: 1em;
-}
-
-#quote-box .quote-text i {
+  margin-top: 2em;
   margin-right: 0.4em;
-}
-
-#quote-box .quote-text i {
   margin-left: 0.4em;
 }
 
-#quote-box .quote-author {
+.quote-author {
   height: auto;
   clear: both;
   font-size: 1em;
   text-align: right;
-  margin-bottom: 40px;
+  margin-bottom: 5em;
 }
 
-#quote-box .buttons {
-  margin: auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-#quote-box .buttons .button {
+.btn {
   border: none;
   outline: none;
-  color: #fff;
   background-color: var(--nav-color);
-  border-radius: 3px;
-  overflow: hidden;
-  padding: 13px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  color: white;
+}
+.btn:hover {
+  background-color: var(--nav-color);
+  color: white;
+}
+
+.tags-button {
+  background-color: white;
+  color: black;
 }
 
 .quote-tags {
-  width: 275px;
-}
-
-#new-quote {
-  float: right;
-  background-color: var(--nav-color);
-}
-
-.quote-box-footer {
-  position: absolute;
-  right: 30px;
-  bottom: 20px;
-  width: calc(var(--quote-box-width) - 60px);
-}
-
-@media screen and (max-width: 450px) {
-  #quote-box {
-    padding: 20px;
-    --quote-box-width: 320px;
-  }
-  .quote-box-footer {
-    --quote-box-width: 320px;
-  }
-  .quote-tags {
-    width: 160px;
-  }
-  #quote-box .buttons .button {
-    padding: 8px;
-  }
+  width: 100%;
 }
 
 /* Search Box */
 .form-control:focus {
   box-shadow: none;
+}
+
+.main-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.display-container {
+  width: 30%;
+  height: 60%;
+  border-radius: 1em;
+  padding: 5em;
+  background-color: #fff;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.message-container {
+  height: 70%;
+  width: 100%;
+}
+
+@media screen and (max-width: 450px) {
+  .display-container {
+    width: 80%;
+    height: 80%;
+  }
+}
+
+/*change of does not fit as per normal laptop screen size*/
+@media screen and (max-width: 1200px) {
+  .display-container {
+    width: 80%;
+    height: 80%;
+  }
+}
+
+@media screen and (max-width: 330px) {
+  .dropdown-btn {
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
