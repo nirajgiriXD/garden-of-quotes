@@ -18,6 +18,26 @@ main {
   height: calc(100vh - 62px);
 }
 
+.display-container {
+  height: auto;
+  width: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border-radius: 8px;
+  padding: 40px;
+}
+
+@media screen and (max-width: 450px) {
+  .display-container {
+    width: 350px;
+    padding: 20px;
+  }
+}
+
 /* Navbar */
 
 nav {
@@ -46,6 +66,28 @@ nav {
   }
 }
 
+.quote-and-arthur-container {
+  height: 200px;
+  overflow-y: scroll;
+}
+
+.quote-text {
+  clear: both;
+  justify-content: center;
+  line-height: 1.2;
+  font-weight: 500;
+  font-size: 1.5em;
+}
+
+.quote-author {
+  clear: both;
+  font-size: 1em;
+  margin-top: 1em;
+  text-align: right;
+}
+
+/* Buttons */
+
 .btn {
   border: none;
   outline: none;
@@ -63,54 +105,23 @@ nav {
   color: black;
 }
 
-
 /* Search Box */
 .form-control:focus {
   box-shadow: none;
 }
 
-.main-container {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* Scrollbar */
+.quote-and-arthur-container::-webkit-scrollbar {
+  height: 100%;
+  width: 5px;
+  margin-left: 5px;
 }
 
-.display-container {
-  width: 30%;
-  height: 60%;
-  border-radius: 1em;
-  background-color: #fff;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  word-wrap: break-word;
-  overflow-y: auto;
+.quote-and-arthur-container::-webkit-scrollbar-thumb {
+  background-color: var(--nav-color);
 }
 
-.message-container {
-  height: 60%;
-}
-
-@media screen and (max-width: 450px) {
-  .display-container {
-    width: 80%;
-    height: 80%;
-  }
-}
-
-/*change of does not fit as per normal laptop screen size*/
-@media screen and (max-width: 1200px) {
-  .display-container {
-    width: 80%;
-    height: 80%;
-  }
-}
-
-@media screen and (max-width: 330px) {
-  .dropdown-btn {
-    width: 20%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+.quote-and-arthur-container::-webkit-scrollbar-track,
+.quote-and-arthur-container::-webkit-scrollbar-thumb {
+  border-radius: 21px;
 }
