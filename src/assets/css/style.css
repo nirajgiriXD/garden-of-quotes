@@ -72,16 +72,12 @@ nav {
 }
 
 .quote-text {
-  clear: both;
-  justify-content: center;
   line-height: 1.2;
   font-weight: 500;
   font-size: 1.5em;
 }
 
 .quote-author {
-  clear: both;
-  font-size: 1em;
   margin-top: 1em;
   text-align: right;
 }
