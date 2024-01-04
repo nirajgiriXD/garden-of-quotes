@@ -12,7 +12,10 @@ import QuoteBox from "./components/quoteBox/quoteBox";
 import { QuoteItemProp } from "./components/types/quoteProp";
 
 const App = () => {
-  const [quotes, setQuotes] = useState([]);
+  const [quoteItem, setQuoteItem] = useState<QuoteItemProp>(
+    {} as QuoteItemProp
+  );
+  const [quotes, setQuotes] = useState<QuoteItemProp[]>([]);
   const [tags, setTags] = useState<Set<string>>(new Set());
 
   useEffect(() => {
@@ -42,9 +45,19 @@ const App = () => {
 
   return (
     <>
-      <Navbar logo={logo} quotes={quotes} />
+      <Navbar
+        logo={logo}
+        quotes={quotes}
+        quoteItem={quoteItem}
+        setQuoteItem={setQuoteItem}
+      />
       <main className="d-flex align-items-center justify-content-center">
-        <QuoteBox quotes={quotes} tags={tags} />
+        <QuoteBox
+          quotes={quotes}
+          quoteItem={quoteItem}
+          setQuoteItem={setQuoteItem}
+          tags={tags}
+        />
       </main>
     </>
   );

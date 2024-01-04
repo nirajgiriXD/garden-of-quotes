@@ -1,81 +1,44 @@
 /**
  * External dependencies.
  */
-import React, {
-  useRef,
-  useState,
-  useEffect,
-  useCallback,
-  ChangeEvent,
-} from "react";
+import React, { useState } from "react";
+import Select from "react-select";
 
 /**
  * Internal dependencies.
  */
-import { QuoteItemProp } from "../types/quoteProp";
 import { SeachBoxProp } from "./types/searchBoxProp";
+import { QuoteItemProp } from "../types/quoteProp";
 
-const SearchPage: React.FC<SeachBoxProp> = ({ quotes }) => {
-  const [searchQuery, setSearchQuery] = useState<string>("");
-  const [searchResult, setSearchResult] = useState<string[]>([]);
+const SearchPage: React.FC<SeachBoxProp> = ({ quotes, setQuoteItem }) => {
+  const [selectedOption, setSelectedOption] = useState(null);
 
-  const maxNumberOfSuggestions = 10;
-  const quotesArray = useRef<string[]>([]);
+  const options = quotes.map((quote) => ({
+    value: quote,
+    label: quote.quote,
+  }));
 
-  const handleSuggestionClick = useCallback((quote: string) => {
-    setSearchQuery(quote);
-  }, []);
-
-  const handleSearchInputChange = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => {
-      const inputQuery = e.target.value ?? "";
-      setSearchQuery(inputQuery);
-
-      const filteredQuotes = quotesArray.current.filter((quote) =>
-        quote.includes(inputQuery)
-      );
-
-      setSearchResult(filteredQuotes.slice(0, maxNumberOfSuggestions));
-    },
-    []
-  );
-
-  useEffect(() => {
-    const allQuotes = quotes.map((quote: QuoteItemProp) => quote.quote);
-    quotesArray.current = allQuotes;
-  }, [quotes]);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleSelectChange = (selected: any) => {
+    setSelectedOption(selected);
+    if (selected) {
+      setQuoteItem(selected.value as QuoteItemProp);
+    }
+  };
 
   return (
     <div className="search-container">
       <div className="form-group">
-        <input
-          list="quote-list-suggestions"
-          type="text"
-          className="form-control"
+        <Select
+          value={selectedOption}
+          onChange={handleSelectChange}
+          className={"search-field"}
+          isClearable={true}
+          escapeClearsValue={true}
+          options={options}
           placeholder="Search quote..."
-          value={searchQuery}
-          onChange={handleSearchInputChange}
+          noOptionsMessage={() => "Quote not found"}
         />
-
-        {searchQuery !== "" && (
-          <datalist id="quote-list-suggestions">
-            {searchResult.length > 0 ? (
-              searchResult.map((quote: string, index: number) => {
-                return (
-                  <option
-                    key={index}
-                    value={quote}
-                    onClick={() => handleSuggestionClick(quote)}
-                  >
-                    {quote}
-                  </option>
-                );
-              })
-            ) : (
-              <option>Quote not found</option>
-            )}
-          </datalist>
-        )}
       </div>
     </div>
   );
