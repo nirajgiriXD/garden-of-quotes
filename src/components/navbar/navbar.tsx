@@ -6,7 +6,7 @@ import { navItemsList } from "./constant";
 import { type NavbarProp } from "./types/navbarProp";
 import SearchPage from "../searchBox/searchBox";
 
-const Navbar = ({ logo, quotes }: NavbarProp) => {
+const Navbar = ({ logo, quotes, setQuoteItem }: NavbarProp) => {
   return (
     <nav className="navbar navbar-expand-lg shadow">
       <div className="container">
@@ -29,7 +29,11 @@ const Navbar = ({ logo, quotes }: NavbarProp) => {
             <ul className="navbar-nav my-2 my-lg-0">
               {navItemsList.map((navItem) => {
                 return navItem.id === "search-quote-btn" ? (
-                  <SearchPage key={navItem.id} quotes={quotes} />
+                  <SearchPage
+                    key={navItem.id}
+                    quotes={quotes}
+                    setQuoteItem={setQuoteItem}
+                  />
                 ) : (
                   <NavItem
                     key={navItem.id}

@@ -6,18 +6,17 @@ import React, { useCallback, useEffect, useState } from "react";
 /**
  * Internal dependencies.
  */
-import { QuoteItemProp } from "../types/quoteProp";
 import { QuoteBoxProp } from "./types/quoteBoxProp";
 import { Dropdown } from "react-bootstrap";
 
-const QuoteBox: React.FC<QuoteBoxProp> = ({ quotes, tags }) => {
+const QuoteBox: React.FC<QuoteBoxProp> = ({
+  quotes,
+  tags,
+  quoteItem,
+  setQuoteItem,
+}) => {
   const [selectedTag, setSelectedTag] = useState<string>("any");
   const [numOfQuotes, setNumOfQuotes] = useState(0);
-  const [quoteItem, setQuoteItem] = useState({
-    quote: "",
-    author: "",
-    tags: [],
-  } as QuoteItemProp);
 
   const handleDropdownChange = useCallback((eventKey: string | null) => {
     if (eventKey !== null) {
@@ -35,7 +34,7 @@ const QuoteBox: React.FC<QuoteBoxProp> = ({ quotes, tags }) => {
     }
 
     setQuoteItem(quotes[randomIndex]);
-  }, [numOfQuotes, quotes, selectedTag]);
+  }, [numOfQuotes, quotes, selectedTag, setQuoteItem]);
 
   useEffect(() => {
     setNumOfQuotes(quotes.length);
@@ -50,7 +49,9 @@ const QuoteBox: React.FC<QuoteBoxProp> = ({ quotes, tags }) => {
       <div className="border-bottom w-100">
         <div className="pb-4">
           Tags:{" "}
-          {quoteItem.tags.length === 0 ? "general" : quoteItem.tags.join(", ")}
+          {quoteItem.tags?.length === 0
+            ? "general"
+            : quoteItem.tags?.join(", ")}
         </div>
       </div>
 
