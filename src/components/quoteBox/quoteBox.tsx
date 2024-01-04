@@ -50,7 +50,7 @@ const QuoteBox: React.FC<QuoteBoxProp> = ({ quotes, tags }) => {
   return (
     <div className="main-container">
         <div className="display-container p-5">
-            <div className="row border-bottom border-dark border-2">
+            <div className="row border-bottom border-dark border-1">
                 <div className="col-auto d-flex justify-content-start align-items-center">
                     <p>Tags:{" "}
                     {quoteItem.tags.length === 0
