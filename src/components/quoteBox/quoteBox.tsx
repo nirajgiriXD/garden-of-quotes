@@ -54,7 +54,7 @@ const QuoteBox: React.FC<QuoteBoxProp> = ({ quotes, tags }) => {
         </div>
       </div>
 
-      <div className="my-4 quote-and-arthur-container">
+      <div className="my-4 mx-auto px-2 quote-and-arthur-container">
         {/* Quote */}
         <div className="quote-text">
           <i className="fa fa-quote-left"></i>
