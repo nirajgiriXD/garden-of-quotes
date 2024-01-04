@@ -102,8 +102,14 @@ nav {
 }
 
 /* Search Box */
-.form-control:focus {
-  box-shadow: none;
+.search-field {
+  width: 250px;
+}
+
+@media screen and (max-width: 992px) {
+  .search-field {
+    width: 100%;
+  }
 }
 
 /* Scrollbar */
