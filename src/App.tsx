@@ -45,12 +45,7 @@ const App = () => {
 
   return (
     <>
-      <Navbar
-        logo={logo}
-        quotes={quotes}
-        quoteItem={quoteItem}
-        setQuoteItem={setQuoteItem}
-      />
+      <Navbar logo={logo} quotes={quotes} setQuoteItem={setQuoteItem} />
       <main className="d-flex align-items-center justify-content-center">
         <QuoteBox
           quotes={quotes}
