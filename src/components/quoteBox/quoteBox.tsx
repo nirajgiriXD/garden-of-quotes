@@ -1,5 +1,3 @@
-
-
 /**
  * External dependencies.
  */
@@ -48,59 +46,56 @@ const QuoteBox: React.FC<QuoteBoxProp> = ({ quotes, tags }) => {
   }, [generateRandomQuote, numOfQuotes, quotes]);
 
   return (
-    <div className="main-container">
-        <div className="display-container p-5">
-            <div className="row border-bottom border-dark border-2">
-                <div className="col-auto d-flex justify-content-start align-items-center">
-                    <p>Tags:{" "}
-                    {quoteItem.tags.length === 0
-                    ? "general"
-                    : quoteItem.tags.join(", ")}</p>
-                </div>
-            </div>
-
-            <div className="row mt-5 message-container">
-                <div className="col">
-                    <div className="row">
-                        <div className="col-auto">
-                            <p className="p-1 fs-5 fw-bolder">
-                                <i className="fa fa-quote-left"></i>
-                                <span className="ms-1 me-1">{quoteItem.quote}</span>
-                                <i className="fa fa-quote-right"></i>
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <div className="row">
-                        <div className="col-auto d-flex justify-content-end align-items-center">
-                            <span className="ms-auto p-1">- {quoteItem.author === "" ? "Someone" : quoteItem.author}</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div className="row d-flex justify-content-between align-items-center mt-5">
-                <div className="col-auto">
-                        <Dropdown onSelect={handleDropdownChange} drop="up" className="mb-2">
-                        <Dropdown.Toggle variant="light">
-                            {selectedTag[0].toUpperCase() + selectedTag.substring(1)}
-                        </Dropdown.Toggle>
-                        <Dropdown.Menu>
-                            {Array.from(tags).map((tag) => {
-                            return (
-                            <Dropdown.Item eventKey={tag} key={tag}>
-                                {tag[0].toUpperCase() + tag.substring(1)}
-                            </Dropdown.Item>
-                            );
-                            })}
-                        </Dropdown.Menu>
-                    </Dropdown>
-                </div>
-                <div className="col-auto">
-                    <button className="btn btn-danger  mb-2" onClick={generateRandomQuote}>New quote</button>
-                </div>
-            </div>
+    <div className="display-container">
+      <div className="border-bottom w-100">
+        <div className="pb-4">
+          Tags:{" "}
+          {quoteItem.tags.length === 0 ? "general" : quoteItem.tags.join(", ")}
         </div>
+      </div>
+
+      <div className="my-4 quote-and-arthur-container">
+        {/* Quote */}
+        <div className="quote-text">
+          <i className="fa fa-quote-left"></i>
+          <span className="px-2">{quoteItem.quote}</span>
+          <i className="fa fa-quote-right"></i>
+        </div>
+
+        {/* Author */}
+        <div className="quote-author">
+          - {quoteItem.author === "" ? "Unknown" : quoteItem.author}
+        </div>
+      </div>
+
+      <div className="row border-top pt-4 w-100">
+        {/* Tags */}
+        <div className="col-6">
+          <Dropdown onSelect={handleDropdownChange} drop="down">
+            <Dropdown.Toggle variant="light" className="w-100">
+              {selectedTag[0].toUpperCase() + selectedTag.substring(1)}
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              {Array.from(tags).map((tag) => {
+                return (
+                  <Dropdown.Item eventKey={tag} key={tag}>
+                    {tag[0].toUpperCase() + tag.substring(1)}
+                  </Dropdown.Item>
+                );
+              })}
+            </Dropdown.Menu>
+          </Dropdown>
+        </div>
+        {/* New Quote */}
+        <div className="col-6">
+          <button
+            className="btn btn-danger w-100"
+            onClick={generateRandomQuote}
+          >
+            New quote
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
