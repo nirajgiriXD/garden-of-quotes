@@ -22,9 +22,12 @@ const App = () => {
           "https://raw.githubusercontent.com/nirajgiriXD/garden-of-quotes/main/public/quotes.json"
         );
         const data = await response.json();
-        const setOfTags = new Set<string>(
+        let setOfTags = new Set<string>(
           data.data.flatMap((quote: QuoteItemProp) => quote.tags)
         );
+
+        setOfTags.add("any");
+        setOfTags = new Set<string>(Array.from(setOfTags).sort());
 
         setQuotes(data.data);
         setTags(setOfTags);

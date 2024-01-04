@@ -46,67 +46,54 @@ const QuoteBox: React.FC<QuoteBoxProp> = ({ quotes, tags }) => {
   }, [generateRandomQuote, numOfQuotes, quotes]);
 
   return (
-    <div className="main-container">
-      <div className="display-container p-5">
-        <div className="row filter-container  mb-2 gx-0">
-          <div className="col-12 d-flex justify-content-end align-items-center ">
-            <div className="row ">
-              <div className="col-12 h-100 d-flex justify-content-end align-items-center">
-                <Dropdown onSelect={handleDropdownChange}>
-                  <Dropdown.Toggle variant="light">
-                    {selectedTag[0].toUpperCase() + selectedTag.substring(1)}
-                  </Dropdown.Toggle>
-                  <Dropdown.Menu>
-                    {Array.from(tags).map((tag) => {
-                      return (
-                        <Dropdown.Item eventKey={tag} key={tag}>
-                          {tag[0].toUpperCase() + tag.substring(1)}
-                        </Dropdown.Item>
-                      );
-                    })}
-                  </Dropdown.Menu>
-                </Dropdown>
-              </div>
-            </div>
-          </div>
+    <div className="display-container">
+      <div className="border-bottom w-100">
+        <div className="pb-4">
+          Tags:{" "}
+          {quoteItem.tags.length === 0 ? "general" : quoteItem.tags.join(", ")}
+        </div>
+      </div>
+
+      <div className="my-4 quote-and-arthur-container">
+        {/* Quote */}
+        <div className="quote-text">
+          <i className="fa fa-quote-left"></i>
+          <span className="px-2">{quoteItem.quote}</span>
+          <i className="fa fa-quote-right"></i>
         </div>
 
-        <div className="row message-container mb-2 gx-0">
-          <div className="col-12">
-            <div className="quote-text">
-              <i className="fa fa-quote-left"></i>
-              <span>{quoteItem.quote}</span>
-              <i className="fa fa-quote-right"></i>
-            </div>
-            <div className="quote-author pt-3">
-              <span>
-                - {quoteItem.author === "" ? "Someone" : quoteItem.author}
-              </span>
-            </div>
-          </div>
+        {/* Author */}
+        <div className="quote-author">
+          - {quoteItem.author === "" ? "Unknown" : quoteItem.author}
         </div>
-        <div className="row footer-container mb-2 gx-0">
-          <div className="col-12 d-flex align-items-center">
-            <div className="row w-100">
-              <hr />
-              <div className="col-6">
-                <span className="quote-tags">
-                  Tags:{" "}
-                  {quoteItem.tags.length === 0
-                    ? "general"
-                    : quoteItem.tags.join(", ")}
-                </span>
-              </div>
-              <div className="col-6 d-flex justify-content-end">
-                <button
-                  className="btn btn-danger"
-                  onClick={generateRandomQuote}
-                >
-                  New quote
-                </button>
-              </div>
-            </div>
-          </div>
+      </div>
+
+      <div className="row border-top pt-4 w-100">
+        {/* Tags */}
+        <div className="col-6">
+          <Dropdown onSelect={handleDropdownChange} drop="down">
+            <Dropdown.Toggle variant="light" className="w-100">
+              {selectedTag[0].toUpperCase() + selectedTag.substring(1)}
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              {Array.from(tags).map((tag) => {
+                return (
+                  <Dropdown.Item eventKey={tag} key={tag}>
+                    {tag[0].toUpperCase() + tag.substring(1)}
+                  </Dropdown.Item>
+                );
+              })}
+            </Dropdown.Menu>
+          </Dropdown>
+        </div>
+        {/* New Quote */}
+        <div className="col-6">
+          <button
+            className="btn btn-danger w-100"
+            onClick={generateRandomQuote}
+          >
+            New quote
+          </button>
         </div>
       </div>
     </div>
