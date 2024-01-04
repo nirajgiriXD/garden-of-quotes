@@ -27,6 +27,7 @@ const App = () => {
         );
 
         setQuotes(data.data);
+        setOfTags.add("any")
         setTags(setOfTags);
       } catch (error) {
         console.error("Error fetching data:", error);
