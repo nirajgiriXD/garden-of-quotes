@@ -6,6 +6,11 @@
       "tags": ["motivation"]
     },
     {
+      "quote": "Sometimes we don't want to heal because the pain is the last link to what we lost.",
+      "author": "",
+      "tags": ["wisdom", "love"]
+    },
+    {
       "quote": "When the bird is alive, it eats ants; when the bird has died, ants eat it. One tree can be made into a million matchsticks, but only one matchstick is needed to burn a million trees. Circumstances can change at any time; you may be powerful today, but time is more powerful than you.",
       "author": "",
       "tags": ["wisdom"]
@@ -33,62 +38,62 @@
     {
       "quote": "Some things can't be orchestrated. Some things have to be spontaneous.",
       "author": "",
-      "tags": []
+      "tags": ["wisdom"]
     },
     {
       "quote": "This is where hero become legend and moment becomes history.",
       "author": "",
-      "tags": []
+      "tags": ["motivation"]
     },
     {
       "quote": "Beauty is the power of woman and power is the beauty of man.",
       "author": "",
-      "tags": []
+      "tags": ["sigma"]
     },
     {
       "quote": "Think about what it means to think different and that's how you change the world.",
       "author": "",
-      "tags": []
+      "tags": ["wisdom"]
     },
     {
       "quote": "Be not as you are, but as you should be.",
       "author": "",
-      "tags": []
+      "tags": ["motivation", "wisdom"]
     },
     {
       "quote": "No amount of guilt can solve the past, and no amount of anxiety can change the future.",
       "author": "",
-      "tags": []
+      "tags": ["wisdom"]
     },
     {
       "quote": "Motivation is temporary, discipline is permanent.",
       "author": "",
-      "tags": []
+      "tags": ["motivation", "wisdom"]
     },
     {
       "quote": "Break the plateau.",
       "author": "",
-      "tags": []
+      "tags": ["motivation"]
     },
     {
       "quote": "Not the lack of time but the lack of direction is the problem.",
       "author": "",
-      "tags": []
+      "tags": ["wisdom"]
     },
     {
       "quote": "Never accept death when suffering is owed.",
       "author": "",
-      "tags": []
+      "tags": ["sigma"]
     },
     {
       "quote": "Faith is belief in the absence of evidence.",
       "author": "",
-      "tags": []
+      "tags": ["wisdom"]
     },
     {
       "quote": "Never give up on something that you can’t go a day without thinking about.",
       "author": "",
-      "tags": []
+      "tags": ["motivation"]
     },
     {
       "quote": "Showing emotions to people is like bleeding next to a shark.",
@@ -313,7 +318,7 @@
     {
       "quote": "Distance doesn't separate people. Silence does.",
       "author": "",
-      "tags": ["relationship"]
+      "tags": ["wisdom", "love"]
     },
     {
       "quote": "There are two types of people in the world: givers and takers. The takers may eat better but the givers sleep better.",
@@ -463,7 +468,7 @@
     {
       "quote": "Be in the world, but don't let the world be in you. Love, and yet don't be lost in it. Relate, and yet be alone, utterly alone. Know perfectly well that all relationship is a game: play the game and play it as beautifully as possible and as skillfully as possible.",
       "author": "",
-      "tags": []
+      "tags": ["wisdom"]
     },
     {
       "quote": "While everybody in this world learns how to see, very few learn how to observe.",
@@ -483,7 +488,7 @@
     {
       "quote": "I think therefore I am.",
       "author": "René Descartes",
-      "tags": []
+      "tags": ["wisdom"]
     },
     {
       "quote": "A good hearted stupid person is as dangerous as a bad hearted person.",
@@ -498,7 +503,7 @@
     {
       "quote": "No tree can grow to heaven unless it's root reach down to hell.",
       "author": "",
-      "tags": []
+      "tags": ["wisdom", "motivation"]
     },
     {
       "quote": "Everone has in him something of the criminal, the genius, and the saint.",
@@ -513,7 +518,7 @@
     {
       "quote": "What's scarier than an opponent who smiles while being beaten?",
       "author": "",
-      "tags": []
+      "tags": ["motivation"]
     },
     {
       "quote": "Those who were seen dancing were thought of insane by those who could not hear the music.",
@@ -528,7 +533,7 @@
     {
       "quote": "Keep your mind open but not so open that your brain falls out.",
       "author": "",
-      "tags": []
+      "tags": ["wisdom"]
     },
     {
       "quote": "Is morality a tool of power, a survival strategy and a way for the losers to strike back against the successful?",
@@ -538,12 +543,12 @@
     {
       "quote": "The greatest enemy of knowledge is not ignorance, it is the illusion of knowledge.",
       "author": "",
-      "tags": []
+      "tags": ["wisdom"]
     },
     {
       "quote": "Emotions have never been a good friend of logic.",
       "author": "",
-      "tags": []
+      "tags": ["wisdom"]
     },
     {
       "quote": "The universe has its own way of giving meaning to madness.",
@@ -3188,27 +3193,22 @@
     {
       "quote": "You are never too old to start over. Every day is a chance to make changes to create the life we want.",
       "author": "Karon Wadell",
-      "tags": []
+      "tags": ["motivation"]
     },
     {
       "quote": "I'd rather drown in your shadows than swim in someone else's light.",
       "author": "",
-      "tags": []
-    },
-    {
-      "quote": "And all of a sudden, in a moment of complete absurd randomness, there is clarity.",
-      "author": "",
-      "tags": []
+      "tags": ["love"]
     },
     {
       "quote": "I'm not a simp, but I'd go to war for that smile.",
       "author": "",
-      "tags": []
+      "tags": ["love"]
     },
     {
-    "quote": "Don't wait for the perfect moment. Create it yourself.",
-    "author": "",
-    "tags": ["motivation"]
+      "quote": "Don't wait for the perfect moment. Create it yourself.",
+      "author": "",
+      "tags": ["motivation"]
     },
     {
       "quote": "In the dance of life, spontaneity is the best choreographer.",
