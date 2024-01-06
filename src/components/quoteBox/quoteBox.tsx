@@ -49,7 +49,9 @@ const QuoteBox: React.FC<QuoteBoxProp> = ({
       <div className="border-bottom w-100">
         <div className="pb-4">
           Tags:{" "}
-          {quoteItem.tags?.length === 0 ? "any" : quoteItem.tags?.join(", ")}
+          {quoteItem.tags?.length === 0
+            ? "general"
+            : quoteItem.tags?.join(", ")}
         </div>
       </div>
 
