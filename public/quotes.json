@@ -1437,7 +1437,7 @@
     },
     {
       "quote": "The strongest people are not those who show strength in front of us but those who win battles we know nothing about.",
-      "author": "",
+      "author": "Elisabeth Kübler-Ross",
       "tags": []
     },
     {
@@ -1447,22 +1447,22 @@
     },
     {
       "quote": "Don't raise your voice, improve your argument.",
-      "author": "",
+      "author": "Archbishop Desmond Tutu",
       "tags": ["sigma"]
     },
     {
       "quote": "He who believes is strong. He who doubts is weak.",
-      "author": "",
+      "author": "Henryk Sienkiewicz",
       "tags": []
     },
     {
       "quote": "Listen, smile, agree, and then do whatever the fuck you were gonna do anyway.",
-      "author": "",
+      "author": "Robert Downey Jr",
       "tags": []
     },
     {
       "quote": "Master the art of observation.",
-      "author": "",
+      "author": " Jane Austen",
       "tags": []
     },
     {
@@ -3429,6 +3429,56 @@
       "quote": "Heroes are ordinary individuals who respond with extraordinary courage in spontaneous moments.",
       "author": "",
       "tags": ["motivation"]
+    },
+    {
+      "quote": "The only way to do great work is to love what you do.",
+      "author": "Steve Jobs",
+      "tags": ["motivation"]
+    },
+    {
+    "quote": "In the middle of difficulty lies opportunity.",
+    "author": "Albert Einstein",
+    "tags": ["motivation"]
+    },
+    {
+    "quote": "Believe you can and you're halfway there.",
+    "author": "Theodore Roosevelt",
+    "tags": ["motivation"]
+    },
+    {
+    "quote": "Success is not final, failure is not fatal: It is the courage to continue that counts.",
+    "author": "Winston Churchill",
+    "tags": ["motivation"]
+    },
+    {
+    "quote": "The future belongs to those who believe in the beauty of their dreams.",
+    "author": "Eleanor Roosevelt",
+    "tags": ["motivation"]
+    },
+    {
+      "quote": "Your time is limited, don't waste it living someone else's life.",
+      "author": "Steve Jobs",
+      "tags": ["motivation"]
+    },
+    {
+    "quote": "The only limit to our realization of tomorrow will be our doubts of today.",
+    "author": "Franklin D. Roosevelt",
+    "tags": ["motivation"]
+    },
+    {
+    "quote": "Do not wait to strike till the iron is hot, but make it hot by striking.",
+    "author": "William Butler Yeats",
+    "tags": ["motivation"]
+    },
+    {
+    "quote": "Success is stumbling from failure to failure with no loss of enthusiasm.",
+    "author": "Winston Churchill",
+    "tags": ["motivation"]
+    },
+    {
+    "quote": "The only thing standing between you and your goal is the story you keep telling yourself as to why you can't achieve it.",
+    "author": "Jordan Belfort",
+    "tags": ["motivation"]
     }
   ]
 }
